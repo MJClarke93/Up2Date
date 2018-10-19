@@ -16,6 +16,7 @@ function say(text) {
 var db = require("./db");
 var m = db.user_db(true, true);
 
+
 // --------------------------------------------------------
 // SOCKET.IO
 // --------------------------------------------------------
@@ -25,12 +26,13 @@ var newsapi = news.news_conn();
 
 io.on("connection", function(socket) {
   say("Socket connection established.");
+  // Delivers news posts on request
   socket.on("loadPosts", data => {
     db.user_get_prefs(m, data.username, (result) => {
       var tags = result.tags;
-      var q_string = "";
-      var string_part = "";
       for (var i=0; i<tags.length; i++) {
+        var q_string = "";
+        var string_part = "";
         if (i == tags.length-1) {
           string_part = tags[i];
         } else {
@@ -49,6 +51,7 @@ io.on("connection", function(socket) {
   });
 });
 
+
 // --------------------------------------------------------
 // EXPRESS
 // --------------------------------------------------------
@@ -61,15 +64,7 @@ app.use(cors());
 
 // Log connections
 app.use((req, res, next) => {
-  say(
-    "Recieved " +
-      req.method +
-      " request to " +
-      req.originalUrl +
-      " from " +
-      req.headers.host +
-      "."
-  );
+  say("Recieved " +req.method +" request to " +req.originalUrl +" from " +req.headers.host +".");
   next();
 });
 
@@ -79,13 +74,13 @@ app.use((req, res, next) => {
 
 // Reponds to GET at "/api" by returning a user's information
 app.get("/api", (req, res) => {
-  // Not implemented, as it isn't necessary (and would be a security risk)
+  // Not currently implemented, as it isn't necessary
   res.sendStatus(501);
 });
 
 // Reponds to GET at "/api/creds" by returning a user's credentials
 app.get("/api/creds", (req, res) => {
-  // Not implemented, as it isn't necessary (and would be a security risk)
+  // Not currently implemented, as it isn't necessary
   res.sendStatus(501);
 });
 
@@ -169,10 +164,7 @@ app.delete(["/api", "/api/creds", "/api/prefs"], jsonparser, (req, res) => {
             }
           });
         } else {
-          res.json({
-            success: false,
-            error: "Provided username and password did not match"
-          });
+          res.json({success: false,error: "Provided username and password did not match"});
         }
       } else {
         res.json({ success: false, error: errmsg });
@@ -193,23 +185,16 @@ app.put("/api", (req, res) => {
   res.sendStatus(501);
 });
 
+// Responds to PUT requests at "/api/creds" by updating the user's password
 app.put("/api/creds", jsonparser, (req, res) => {
   username = req.body.username;
   old_password = req.body.password;
   new_password = req.body.new_password;
-  console.log("code reached here");
-  console.log(username);
-  console.log(old_password);
-  console.log(new_password);
   if (username && old_password && new_password) {
     db.user_check(m, username, old_password, (result, success, errmsg) => {
       if (success) {
         if (result) {
-          db.user_update_creds(
-            m,
-            username,
-            new_password,
-            (success_new, errmsg_new) => {
+          db.user_update_creds(m, username, new_password, (success_new, errmsg_new) => {
               if (success_new) {
                 res.json({ success: true, error: null, result: result });
               } else {
@@ -218,10 +203,7 @@ app.put("/api/creds", jsonparser, (req, res) => {
             }
           );
         } else {
-          res.send({
-            success: false,
-            error: "Provided username and password did not match"
-          });
+          res.send({success: false, error: "Provided username and password did not match"});
         }
       } else {
         res.send({ success: false, error: errmsg });
@@ -232,6 +214,7 @@ app.put("/api/creds", jsonparser, (req, res) => {
   }
 });
 
+// Responses to PUT requests at "/api/prefs" by updating the user's preferences
 app.put("/api/prefs", jsonparser, (req, res) => {
   username = req.body.username;
   new_tags = req.body.tags;
@@ -248,11 +231,12 @@ app.put("/api/prefs", jsonparser, (req, res) => {
   }
 });
 
+
 // -----
 // OTHER
 // -----
 
-// Responds to requests at "/all", confirming it's the server root
+// Responds to requests at "/", confirming it's the server root
 app.all("/", (req, res) => {
   res.send("This is the server root.");
 });
