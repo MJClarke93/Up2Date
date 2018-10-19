@@ -234,7 +234,7 @@ function user_check(models, username, password, callback = (result, success, err
     if (success) {
       if (docs) {
         say("Unhashing "+username+"'s password...");
-        var hash = docs[0].password;
+        var hash = docs.password;
         bcrypt.compare(password, hash, function(err, res) {
           if (err) {
             say("Could not verify "+username+"'s credentials due to a password hashing error: "+err, true)
@@ -276,7 +276,7 @@ function user_get_prefs(models, username, callback = (result, success, errmsg)=>
     if (succa) {
       if (docs) {
         say("Retrieved "+username+"'s preferences.", true);
-        var d = docs[0];
+        var d = docs;
         callback({tags: d.tags}, true, "No error");
       } else {
         say("Could not retrieve "+username+"'s preferences: username does not exist.", true);
