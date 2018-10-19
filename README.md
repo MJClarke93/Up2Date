@@ -3,15 +3,15 @@ This program is built as part of Assignment 3 for Advanced Internet Programming 
 
 It was developed by **Abhusha Bogati**, **Mitchell Clarke** and **Maggie Liuzzi**.
 
-  
+
 
   ## Description
 
-Up2Date is a news and social media aggregation web application. Its goal is to give users the speed and convenience of seeing all of the news and social media they are interested in, all in one place.  Its design aims to be "simple, but effective".
+Up2Date is a news and social media aggregation web application. Its goal is to give users the speed and convenience of seeing news articles and social media posts they are interested in, all in one place.  Its design aims to be "simple, but effective".
 
 Currently it imports posts using the Twitter and News APIs, as examples. More applications may be supported in future versions.
 
-  
+
 
   ## Installation
 
@@ -34,7 +34,20 @@ Once these are installed, complete the following steps:
      npm install
      ```
 
-  3. Once the dependencies are installed, simply run one of the following:
+  3. Generate your Twitter API keys at: https://developer.twitter.com/en/apps/ and your News API key at: https://newsapi.org/
+
+
+  4. Create an .env file inside the app folder and add your keys like this (and add '.env' to your .gitignore):
+
+     ```shell
+     CONSUMER_KEY=yourkey
+     CONSUMER_SECRET=yourkey
+     ACCESS_TOKEN=yourkey
+     ACCESS_TOKEN_SECRET=yourkey
+     NEWSAPI_KEY=yourkey
+     ```
+
+  5. Once the dependencies are installed, simply run one of the following:
 
      ```shell
      # If you're on Windows:
