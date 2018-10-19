@@ -37,7 +37,7 @@ Once these are installed, complete the following steps:
   3. Generate your Twitter API keys at: https://developer.twitter.com/en/apps/ and your News API key at: https://newsapi.org/
 
 
-  4. Create an .env file inside the app folder and add your keys like this (and add '.env' to your .gitignore):
+  4. Create an .env file inside the app folder and paste your keys like this:
 
      ```shell
      CONSUMER_KEY=yourkey
@@ -46,6 +46,7 @@ Once these are installed, complete the following steps:
      ACCESS_TOKEN_SECRET=yourkey
      NEWSAPI_KEY=yourkey
      ```
+     Remember to add '.env' to your .gitignore.
 
   5. Once the dependencies are installed, simply run one of the following:
 
