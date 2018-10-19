@@ -5,6 +5,24 @@ import { Link } from "react-router";
 import { browserHistory } from "react-router";
 import { AuthenticationContext, AlreadyAuthCheck } from "../authentication";
 
+//--------------------------------------------------------------------------------------
+//Login Form:
+//This is the first form that user finds when the App is used.
+//This basically allows the users to login to their dashboard.
+//If users login with valid username and password, they are redirected to their Dashboard.
+//If users have never signed in, they are redirected to createNewAccount page.
+//--------------------------------------------------------------------------------------
+//Login Form Validation and Authentication:
+//The mandatory fields are checked before submitting to database.
+//Though database handles the blank fields, this section checks the input.
+// Error is sent but data is not passed to database if mandatory fields are blank.
+//                nameError- the error message sent if name field is sent empty
+//                passwordError-the error message sent if password field is sent empty
+//validation is checked in handleSubmit method.
+//Then response at handleSubmit is checked. If msg.success is true,valid User Detail.
+//Only Authenticaed user are allowed to visit particular pages.
+//-------------------------------------------------------------------------------------
+
 class LoginForm extends Component {
   constructor(props) {
     super(props);

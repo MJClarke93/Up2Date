@@ -5,6 +5,22 @@ import { browserHistory } from "react-router";
 import { AuthenticationContext, AlreadyAuthCheck } from "../authentication";
 import { Link } from "react-router";
 
+//----------------------------------------------------------------------------
+//New Account Form:
+//Users from Login page are redirected to this page to create new account
+//User can sign in and save their log in details in database
+//Once new account is created, the user is redired back to login form.
+//----------------------------------------------------------------------------
+//New Account Form Validationa and Authentication:
+//The mandatory fields are checked before submitting to database.
+//Though database handles the blank fields, this section checks the input.
+// Error is sent but data is not passed to database if mandatory fields are blank.
+//                nameError- the error message sent if name field is sent empty
+//                passwordError-the error message sent if password field is sent empty
+//Validation is checked at handleSubmit method.
+//Response at HandleSubmit is checked to confirm successful creation of new account(success===true)
+//----------------------------------------------------------------------------
+
 class NewAccountForm extends Component {
   constructor(props) {
     super(props);
