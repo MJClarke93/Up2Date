@@ -1,0 +1,19 @@
+#post_div {
+    border: 1px solid grey;
+    padding: 2%;
+    border-radius: 20%;
+    background-color: #c9dbda;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+#dashboard_news_div {
+    margin: 0 auto;
+    margin-top: 2.5%;
+    margin-bottom: 2.5%;
+    width: 60%;
+}
+
+#dashboard_page {
+    background-color: #e1d3d3;
+}

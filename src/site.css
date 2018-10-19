@@ -1,0 +1,20 @@
+.site-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.site-header,
+.site-footer {
+  background-color: #eeee;
+  text-align: center;
+}
+
+.page-dashboard,
+.page-login,
+.page-settings,
+.page-newAccount {
+  flex: 1;
+  text-align: center;
+  background-color: #dddddd;
+}

@@ -1,0 +1,67 @@
+input[type="texta"], textarea {
+    background-color: #dfcaca;
+}
+
+input[type="password"], textarea {
+    background-color: #dfcaca;
+}
+
+input[type="submit"], textarea {
+    background-color: #c9dbda;
+}
+button, textarea {
+    background-color: #c9dbda;
+}
+
+#settings_page {
+    background-color: #c9dbda;
+}
+
+#settings_form {
+    border: 1px solid grey;
+    border-radius: 15%;
+    margin: 0 auto;
+    margin: 4.5% 25% 0% 25%;
+    padding: 5% 2.5% 5% 2.5%;
+    background-color: #DCDCDC;
+}
+
+#settings_header {
+    font-weight: bold;
+    margin: 0% 0% 2.5% 0%;
+    font-size: 130%;
+}
+
+#update_pwd_button {
+    padding: 1.5%;
+    border-radius: 15%;
+    font-weight: bold;
+    margin-top: 2%;
+}
+
+#tags_input {
+    width: 80%;
+}
+
+#old_pwd {
+    margin-left: 1.5%
+}
+
+#update_tags_button {
+    padding: 1.5%;
+    border-radius: 15%;
+    font-weight: bold;
+    margin-top: 2%;
+}
+
+#delete_account_button {
+    padding: 1.5%;
+    border-radius: 15%;
+    font-weight: bold;
+    margin-top: 2%;
+}
+
+.centered-table {
+    margin-left:auto; 
+    margin-right:auto;
+}

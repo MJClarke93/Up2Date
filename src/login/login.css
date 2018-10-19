@@ -1,0 +1,37 @@
+input[type="text"], textarea {
+    background-color: #dfcaca;
+}
+
+#login_page {
+    background-color: #c9dbda;
+}
+
+#login_form {
+    border: 1px solid grey;
+    border-radius: 15%;
+    margin: 0 auto;
+    margin: 5% 30% 0% 30%;
+    padding: 5% 0% 5% 0%;
+    background-color: #DCDCDC;
+}
+
+#login_header {
+    font-weight: bold;
+    margin-bottom: 5%;
+    font-size: 130%;
+}
+
+#sign_in {
+    padding: 3%;
+    background-color: #c9dbda;
+    border-radius: 20%;
+    font-weight: bold;
+    font-size: 110%;
+}
+
+.page-newAccountArea {
+  width: 100%;
+  margin: 0;
+  align-self: center;
+  text-decoration: none;
+}

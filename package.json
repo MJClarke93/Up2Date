@@ -3,14 +3,34 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
+    "concurrently": "^4.0.1",
+    "core-js": "^2.5.7",
+    "cors": "^2.8.4",
+    "dotenv": "^6.0.0",
+    "express": "^4.16.3",
+    "mongodb": "^3.1.4",
+    "mongoose": "^5.2.8",
+    "newsapi": "^2.4.0",
+    "nodemon": "^1.18.3",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
-    "react-scripts": "1.1.4"
+    "react-router": "^3.2.1",
+    "react-scripts": "1.1.4",
+    "react-validation": "^3.0.7",
+    "socket.io": "^2.1.1",
+    "socket.io-client": "^2.1.1",
+    "twit": "^2.2.11"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "client": "react-scripts start",
+    "server": "nodemon ./server/main.js",
+    "db": "echo Did you mean \"npm run db-bat\" (windows) or \"npm run db-sh\" (unix)?",
+    "db-bat": "scripts\\start_db.bat",
+    "db-sh": "scripts/start_db.sh",
+    "start": "echo Did you mean \"npm run start-bat\" (windows) or \"npm run start-sh\" (unix)?",
+    "start-bat": "concurrently \"npm run db-bat\" \"npm run client\" \"npm run server\"",
+    "start-sh": "concurrently \"npm run db-sh\" \"npm run client\" \"npm run server\""
   }
 }
