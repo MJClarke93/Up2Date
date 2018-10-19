@@ -1,3 +1,5 @@
+#!/bin/bash
+
 if [ "${PWD##*/}" == "Up2Date" ]
 then
     mkdir -p ./db/data

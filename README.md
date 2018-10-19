@@ -1,25 +1,25 @@
 # Up2Date
-<<<<<<< HEAD
+This program is built as part of Assignment 3 for Advanced Internet Programming at the University of Technology, Sydney, during the Spring 2018 semester.
 
-  This program is built as part of Assignment 3 for Advanced Internet Programming at the University of Technology, Sydney. Spring semester 2018.
-
-  It was developed by **Abhusha Bogati**, **Mitchell Clarke** and **Maggie Liuzzi**.
+It was developed by **Abhusha Bogati**, **Mitchell Clarke** and **Maggie Liuzzi**.
 
   
 
   ## Description
 
-  Up2Date is a news and social media aggregation web application. Its goal is to give users the speed and convenience of seeing all of the news and social media they are interested in, all in one place.  Its design aims to be "simple, but effective".
+Up2Date is a news and social media aggregation web application. Its goal is to give users the speed and convenience of seeing all of the news and social media they are interested in, all in one place.  Its design aims to be "simple, but effective".
+
+Currently it imports posts using the Twitter and News APIs, as examples. More applications may be supported in future versions.
 
   
 
   ## Installation
 
-  To get the app running, you'll need **Node.js** and **npm** installed. If you do not have it, you can download them from here: https://nodejs.org/en/
+To get the app running, you'll need **Node.js** and **npm** installed. If you do not have it, you can download them from here: https://nodejs.org/en/
 
-  You'll also need **MongoDB** installed for database connectivity to work. If you do not have it, you can download it from here: https://www.mongodb.com/download-center
+You'll also need **MongoDB** installed for database connectivity to work. If you do not have it, you can download it from here: https://www.mongodb.com/download-center
 
-  Once these are installed, complete the following steps:
+Once these are installed, complete the following steps:
 
   1. Clone this repo to a directory of your choice using git:
 
@@ -34,82 +34,39 @@
      npm install
      ```
 
-  3. Once the dependencies are installed, start up the database using (omit '-p' on windows):
+  3. Once the dependencies are installed, simply run one of the following:
 
      ```shell
-     mkdir -p ./db/data
-     mongod --dbpath ./db/data
+     # If you're on Windows:
+     npm run start-bat
+     # If you're on Unix:
+     npm run start-sh
      ```
 
-  4. Finally, run the app using:
+Occasionally, an error may occur where the back-end server fails to connect to the database. This occurs because "npm run start-X" attempts to load the 3 servers - MongoDB, Express, React - simultaneously. If the booting of the database is delayed and doesn't finish until after the Express server has finished loading, then it will fail to make a connection. To avoid this, you can manually start each component of the application one at a time, starting with the database:
 
-     ```sh
-     npm start
-     ```
+```shell
+# If you're on Windows:
+npm run db-bat
+# If you're on Unix:
+npm run db-sh
+```
 
-  React runs on Port 3000, Express on Port 3001, and MongoDB on Port 27017. The recommended database location is inside the project folder at ./db/data.
+Then the Express server and React client:
 
-  
+```shell
+# To start the Express server:
+npm run server
+# To start the React client:
+npm run client
+```
 
-  ## Style
-
-  For developers working on this project, adhere to the following style guidelines:
-
-  - Variables, objects, functions, methods and classes all use camel case with no underscores.
-
-  - Use sensible and informative names, even in loops (`i` as the iterator in some for loops is fine).
-
-  - Classes and database collections start with a upper case, while all others start with a lower case.
-
-  - Constants are written in all caps, with words separated using underscores.
-
-  - Use a comment to briefly describe what each component is at the top of its file.
-
-  - Use in-code comments to clarify function or separate sections, rather than to re-state the obvious.
-
-  - Separate groups of code functionality with single lines. Separate classes and methods with two lines.
-
-  - For control structures, stick to the following style:
-
-    ```
-    <keyword> <condition> {
-        <code>
-    } <extension> {
-        <code>
-    }
-    ```
-
-  - For functions with sub-functions, use the following style:
-
-    ```
-    <subfunction>.(<params>)
-        .<subfuction>.(<params>)
-        .<subfuction>.(<params>)
-        .<subfuction>.(<params>)
-    ```
-
-  - For object literals and JSON with more than a couple of parameters, use the following style:
-
-    ```
-    {
-        param : value,
-        param : value,
-        param : value}
-    ```
-
-    
-
-  - Use four spaces for indentation, not tabs.
-
-  - Avoid excessively long lines of code - split across multiple lines as needed.
-
-  - Try to avoid deep nesting of control structures.
-
-  - Place all React-related files into /src/, place all server related files into /server/.
-
-  - Regularly update the README to reflect changes in installation or execution.
-=======
-UTS Advanced Internet Programming 2018, Assignment 3
+MongoDB runs on its default port of 27017. The Express server uses Port 3001 and the React server uses Port 3000. When running on a local machine, you can access the application from http://localhost:3000
 
 
->>>>>>> f7507061f4021e66cb096cf86bdd2d72dc89e689
+
+## Known Bugs
+
+- Refreshing the page will log out the user.
+- By manually sending an appropriate request to the server API, the tags a user is interested in receiving posts about can be retrieved without being logged in.
+- On the settings page, choosing to update your tags to be empty then switching to the Dashboard can crash the Express server.
