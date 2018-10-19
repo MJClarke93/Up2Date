@@ -9,6 +9,7 @@ function twitter_conn() {
 }
 
 function twitter_retrieve(T, keyword, callback = (results) => {}) {
+    // Uses Standard Search Twitter API and Twit npm package to search for five popular tweets in English based on a keyword
     T.get('search/tweets', { q: keyword, count: 5, lang: 'en', result_type: 'popular'}, function(err, data, response) {
         var tweet_array = [];
         var tweets = data.statuses;
@@ -28,6 +29,3 @@ function twitter_retrieve(T, keyword, callback = (results) => {}) {
 }
 
 module.exports = {'twitter_conn':twitter_conn,'twitter_retrieve':twitter_retrieve}
-
-// T = twitter_conn();
-// twitter_retrieve(T);

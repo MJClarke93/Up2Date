@@ -9,7 +9,7 @@ var news = require("./newsAPI");
 var u = require("./utils");
 
 function say(text) {
-  console.log("\x1b[31;1m%s\x1b[0m", "Server: " + text);
+  console.log("\x1b[35;1m%s\x1b[0m", "Server: " + text);
 }
 
 // Connects to the MongoDB database
@@ -64,7 +64,7 @@ app.use(cors());
 
 // Log connections
 app.use((req, res, next) => {
-  say("Recieved " +req.method +" request to " +req.originalUrl +" from " +req.headers.host +".");
+  say("Received " +req.method +" request to " +req.originalUrl +" from " +req.headers.host +".");
   next();
 });
 

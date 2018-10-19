@@ -33,7 +33,7 @@ function news_retrieve_topHeadlines(newsapi, keyword, callback = (results) => {}
         articles_array.push(news_object);
       }
       callback(articles_array);
-      /* response has the following format: {status: "ok", articles: [...]}*/
+      // response has the following format: {status: "ok", articles: [...]}
     });
 }
 
@@ -42,8 +42,8 @@ function news_retrieve_everything(newsapi, keyword, callback = (results) => {}) 
     // You must include at least one q, source, or domain
     newsapi.v2.everything({
       q: keyword,
-      //sources: 'bbc-news,the-verge',
-      //domains: 'bbc.co.uk, techcrunch.com',
+      // sources: 'bbc-news,the-verge',
+      // domains: 'bbc.co.uk, techcrunch.com',
       language: 'en',
       sortBy: 'relevancy',
       pageSize: 5
@@ -63,7 +63,7 @@ function news_retrieve_everything(newsapi, keyword, callback = (results) => {}) 
         articles_array.push(news_object);
       }
       callback(articles_array);
-      /* response has the following format: {status: "ok",articles: [...]}*/
+      // response has the following format: {status: "ok",articles: [...]}
     });
 }
 
@@ -81,7 +81,7 @@ function news_retrieve_sources(newsapi, keyword, callback = (results) => {}) {
         articles_array.push(sources[i]);
       }
       callback(sources_array);
-      /* response has the following format: {status: "ok",sources: [...]}*/
+      // response has the following format: {status: "ok",sources: [...]}
     });
     console.log('Retrieved NewsAPI Sources');
 }
