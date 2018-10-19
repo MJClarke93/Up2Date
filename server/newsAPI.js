@@ -1,15 +1,20 @@
+// Requires secret keys
 var newsAPI_config = require('./newsAPI_config');
 var NewsAPI = require('newsapi');
 var u = require("./utils");
 
 function news_conn() {
+    // Establishes connection with the News API and returns connection object newsapi
     const newsapi = new NewsAPI(newsAPI_config.newsAPI_key);
     return newsapi
 }
 
 function news_retrieve_topHeadlines(newsapi, keyword, callback = (results) => {}) {
+    // Retrieves news top headlines based on a keyword
     // To query /v2/top-headlines
     // All options passed to topHeadlines are optional, but you need to include at least one of them
+    // newsapi is the connection object
+    // keyword reflects the user's interest
     newsapi.v2.topHeadlines({
       // sources: 'bbc-news,the-verge',
       q: keyword,
@@ -38,8 +43,11 @@ function news_retrieve_topHeadlines(newsapi, keyword, callback = (results) => {}
 }
 
 function news_retrieve_everything(newsapi, keyword, callback = (results) => {}) {
+    // Retrieves news post with metadata based on a keyword
     // To query /v2/everything
     // You must include at least one q, source, or domain
+    // newsapi is the connection object
+    // keyword reflects the user's interest
     newsapi.v2.everything({
       q: keyword,
       // sources: 'bbc-news,the-verge',
@@ -68,8 +76,10 @@ function news_retrieve_everything(newsapi, keyword, callback = (results) => {}) 
 }
 
 function news_retrieve_sources(newsapi, keyword, callback = (results) => {}) {
-    // To query sources
+    // Retrieves news sources based on a keyword
     // All options are optional
+    // newsapi is the connection object
+    // keyword reflects the user's interest
     newsapi.v2.sources({
       category: keyword,
       language: 'en',

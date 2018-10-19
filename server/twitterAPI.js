@@ -1,15 +1,18 @@
+// Requires secret keys (i.e. consumer_key, consumer_secret, access_token and access_token_secret)
 var twitterAPI_config = require('./twitterAPI_config');
 var Twit = require('twit');
 var u = require("./utils");
 
 function twitter_conn() {
-    // Retrieving consumer_key, consumer_secret, access_token and access_token_secret
+    // Establishes a connection with the Twitter Standard Search API and returns connection object T
     var T = new Twit(twitterAPI_config);
     return T
 }
 
 function twitter_retrieve(T, keyword, callback = (results) => {}) {
-    // Uses Standard Search Twitter API and Twit npm package to search for five popular tweets in English based on a keyword
+    // Uses Twitter Standard Search API and Twit npm package to search for five popular tweets in English based on a keyword
+    // T is the connection object
+    // keyword reflects the user's interest
     T.get('search/tweets', { q: keyword, count: 5, lang: 'en', result_type: 'popular'}, function(err, data, response) {
         var tweet_array = [];
         var tweets = data.statuses;
