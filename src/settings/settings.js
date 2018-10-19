@@ -4,13 +4,23 @@ import { HOSTNAME, SERVERPORT } from "../global";
 import { AuthenticationContext, AuthCheck } from "../authentication";
 import { browserHistory } from "react-router";
 
+//---------------------------------------------------------------------------------------
+//Settings.js has got 3 different forms: TagForm, UpdateForm and DeleteForm
+//Each form performs different task.
+//Validation and Authentication is applied in all forms
+//---------------------------------------------------------------------------------------
+//Tag form:
+//Whenever user wants latest updates about new tag, they can submit new tag via this form
+//validation is checked in handleSubmit method an PUT to /api/prefs
+//---------------------------------------------------------------------------------------
+
 class TagForm extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       tags: "Google, Elon Musk, Android",
-      TagError: "",
+      TagError: ""
     };
 
     this.handleTagSubmit = this.handleTagSubmit.bind(this);
@@ -28,13 +38,12 @@ class TagForm extends Component {
   }
 
   handleTagSubmit(event) {
-    // Code used to submit new tags of user's interest
     event.preventDefault();
 
     var new_tags = this.state.tags;
-    new_tags = new_tags.split(',')
-    for (var i=0; i<new_tags.length; i++) {
-      new_tags[i] = new_tags[i].trim()
+    new_tags = new_tags.split(",");
+    for (var i = 0; i < new_tags.length; i++) {
+      new_tags[i] = new_tags[i].trim();
     }
 
     if (new_tags !== "") {
@@ -52,18 +61,18 @@ class TagForm extends Component {
           tags: new_tags
         })
       })
-      .then(res => {
-        return res.json();
-      })
-      .then(msg => {
-        if (msg.success === true) {
-          this.setState({ TagError: "" });
-        } else {
-          this.setState({ TagError: "An error occured: " + msg.error });
-        }
-      });
+        .then(res => {
+          return res.json();
+        })
+        .then(msg => {
+          if (msg.success === true) {
+            this.setState({ TagError: "" });
+          } else {
+            this.setState({ TagError: "An error occured: " + msg.error });
+          }
+        });
     } else {
-      this.setState({ TagError: "Please enter at least one tag."});
+      this.setState({ TagError: "Please enter at least one tag." });
     }
   }
 
@@ -72,8 +81,8 @@ class TagForm extends Component {
       <div name="settings-tags">
         <br />
         <p>
-          To pick keywords you would like to receive posts about, enter them below
-          (separated by commas):
+          To pick keywords you would like to receive posts about, enter them
+          below (separated by commas):
         </p>
         <form onSubmit={this.handleTagSubmit}>
           <input
@@ -84,7 +93,9 @@ class TagForm extends Component {
             onChange={this.handleChange}
           />
           <br />
-          <div style={{ fontSize: 14, color: "red" }}>{this.state.TagError}</div>
+          <div style={{ fontSize: 14, color: "red" }}>
+            {this.state.TagError}
+          </div>
           <input id="update_tags_button" type="submit" value="Update Tags" />
         </form>
       </div>
@@ -92,7 +103,12 @@ class TagForm extends Component {
   }
 }
 
-//---------------------------------------------------------------------------
+//--------------------------------------------------------------------------
+///Update Form:
+//This is the form that user need to use to Update their login details
+//If users submits a username and password, they can change their password.
+//If dont submit valid details, they will receive an error message.
+//validation is checked in handleSubmit method an PUT to /api/creds
 //---------------------------------------------------------------------------
 
 class UpdateForm extends Component {
@@ -109,22 +125,6 @@ class UpdateForm extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  //-------------------------------------------------------------------
-  //validation for UpdateForm
-  //-------------------------------------------------------------------
-
-  /*validate = () => {
-    let old_passwordError = "";
-    let new_passwordError = "";
-
-    if (!this.state.old_password) old_passwordError = "Mandatory field";
-    if (!this.state.new_password) new_passwordError = "Mandatory field";
-    if (old_passwordError || new_passwordError) {
-      this.setState({ old_passwordError, new_passwordError });
-      return false;
-    }
-    return true;
-  };*/
   handleChange(event) {
     const target = event.target;
     const value = target.value;
@@ -135,7 +135,6 @@ class UpdateForm extends Component {
     });
   }
   handleUpdate(event) {
-    // Code for when the user clicks button to update their credentials
     event.preventDefault();
 
     var username = this.props.AuthenticatedName;
@@ -148,7 +147,6 @@ class UpdateForm extends Component {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        //username, password and new_password used at DB
         username: username,
         password: this.state.old_password,
         new_password: this.state.new_password
@@ -186,14 +184,35 @@ class UpdateForm extends Component {
             <tbody>
               <tr>
                 <td>Old Password: </td>
-                <td><input type="password" name="old_password" value={this.state.old_password} onChange={this.handleChange}/></td>
+                <td>
+                  <input
+                    type="password"
+                    name="old_password"
+                    value={this.state.old_password}
+                    onChange={this.handleChange}
+                  />
+                </td>
               </tr>
               <tr>
                 <td>New Password: </td>
-                <td><input type="password" name="new_password" value={this.state.new_password} onChange={this.handleChange}/></td>
+                <td>
+                  <input
+                    type="password"
+                    name="new_password"
+                    value={this.state.new_password}
+                    onChange={this.handleChange}
+                  />
+                </td>
               </tr>
               <tr>
-                <td colSpan='2'><input id="update_pwd_button" type="submit" value="Update Password" onSubmit={this.handleUpdate}/></td>
+                <td colSpan="2">
+                  <input
+                    id="update_pwd_button"
+                    type="submit"
+                    value="Update Password"
+                    onSubmit={this.handleUpdate}
+                  />
+                </td>
               </tr>
             </tbody>
           </table>
@@ -204,6 +223,12 @@ class UpdateForm extends Component {
 }
 
 //--------------------------------------------------------------------------------
+//Delete form :
+//this form is used when user wants to delete their account
+//if user can submit a valid username and password, they can successfully delete
+//their details from database
+//handleDelete method forwards the details from this form to delete the account
+//validation is checked in handleSubmit method an DELETE to /api
 //--------------------------------------------------------------------------------
 
 class DeleteForm extends Component {
@@ -227,7 +252,6 @@ class DeleteForm extends Component {
   }
 
   handleDelete(event) {
-    // Code for when the user clicks the button to delete their account
     event.preventDefault();
     var username = this.props.AuthenticatedName;
     var fetch_url = "http://" + HOSTNAME + SERVERPORT + "/api";
@@ -288,9 +312,6 @@ class DeleteForm extends Component {
     );
   }
 }
-
-//---------------------------------------------------------------------------
-//---------------------------------------------------------------------------
 
 export default class Settings extends Component {
   render() {
