@@ -63,10 +63,11 @@ npm run client
 
 MongoDB runs on its default port of 27017. The Express server uses Port 3001 and the React server uses Port 3000. When running on a local machine, you can access the application from http://localhost:3000
 
+If you receive errors or strange behavior, particularly regarding the database unexpectedly closing for example, check that these ports are unoccupied.
+
 
 
 ## Known Bugs
 
 - Refreshing the page will log out the user.
 - By manually sending an appropriate request to the server API, the tags a user is interested in receiving posts about can be retrieved without being logged in.
-- On the settings page, choosing to update your tags to be empty then switching to the Dashboard can crash the Express server.
