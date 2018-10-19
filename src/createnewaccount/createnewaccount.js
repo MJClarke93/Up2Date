@@ -17,7 +17,7 @@ import { Link } from "react-router";
 // Error is sent but data is not passed to database if mandatory fields are blank.
 //                nameError- the error message sent if name field is sent empty
 //                passwordError-the error message sent if password field is sent empty
-//Validation is checked at handleSubmit method.
+//Validation is checked at handleSubmit method POST to /api.
 //Response at HandleSubmit is checked to confirm successful creation of new account(success===true)
 //----------------------------------------------------------------------------
 

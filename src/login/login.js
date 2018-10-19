@@ -18,7 +18,7 @@ import { AuthenticationContext, AlreadyAuthCheck } from "../authentication";
 // Error is sent but data is not passed to database if mandatory fields are blank.
 //                nameError- the error message sent if name field is sent empty
 //                passwordError-the error message sent if password field is sent empty
-//validation is checked in handleSubmit method.
+//validation is checked in handleSubmit method an POST to /api/creds
 //Then response at handleSubmit is checked. If msg.success is true,valid User Detail.
 //Only Authenticaed user are allowed to visit particular pages.
 //-------------------------------------------------------------------------------------
